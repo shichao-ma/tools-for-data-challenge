@@ -22,7 +22,7 @@ import category_encoders as ce
 def get_part_of_day(timestamp):
     '''
     How to use:
-    dataset['timestamp'] = dataset['timestamp'].apply(lambda x: get_part_of_day(x))
+    dataset['part_of_day'] = dataset['timestamp'].apply(lambda x: get_part_of_day(x))
     '''
     hour = timestamp.hour
     if 6 <= hour < 12:
@@ -41,9 +41,9 @@ def compute_datetime_diff(timestamp1, timestamp2, output='days'):
     elif output == 'seconds':
         return (timestamp1 - timestamp2).dt.seconds
     else:
-        raise Error('Invalid type')
+        raise ValueError('Invalid output')
 
-def plot_preprocessing(X, y):
+def plot_preprocessing(X, y, categorical_columns=None):
     '''
     Target encoding and scaling for drawing pictures
     '''
@@ -54,7 +54,7 @@ def plot_preprocessing(X, y):
     # X_encoded can only be used for drawing pictures
     # Do NOT use it for training models as target encoding will leak info
     return X_encoded
-    
+
 
 def categorical_value_counts(dataset, categorical_variables):
     for column in categorical_variables:
