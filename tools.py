@@ -264,13 +264,13 @@ def plot_confusion_matrix(cm, classes,
     return 
 
 
-def calculate_auc(y, y_pred):
+def calculate_auc(y, y_pred_prob):
     """ 
     This function calculates the AUROC score.
     y: ground truth
-    y_pred: probability of being positive
+    y_pred_prob: probability of being positive
     """
-    fpr, tpr, thresholds = roc_curve(y, y_pred)
+    fpr, tpr, thresholds = roc_curve(y, y_pred_prob)
     return auc(fpr, tpr)
 
 
